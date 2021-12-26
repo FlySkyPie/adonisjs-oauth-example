@@ -7,13 +7,22 @@ export default class User extends BaseModel {
   public id: number
 
   @column()
-  public email: string
-
-  @column({ serializeAs: null })
-  public password: string
+  public email: string | null
 
   @column()
-  public rememberMeToken?: string
+  public name: string
+
+  //@column({ serializeAs: null })
+  //public password: string
+
+  //@column()
+  //public rememberMeToken?: string
+
+  @column()
+  public accessToken: string;
+
+  //@column()
+  //public isVerified: boolean;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -21,10 +30,10 @@ export default class User extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @beforeSave()
-  public static async hashPassword (user: User) {
+  /*@beforeSave()
+  public static async hashPassword(user: User) {
     if (user.$dirty.password) {
       user.password = await Hash.make(user.password)
     }
-  }
+  }/** */
 }

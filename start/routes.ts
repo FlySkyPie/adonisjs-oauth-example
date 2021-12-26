@@ -20,6 +20,7 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', async ({ view }) => {
-  return view.render('welcome')
-})
+Route.get('/', 'HomeController.index').as('home');;
+
+Route.get('/login', 'AuthController.redirect').as('social.login');
+Route.get('/google/callback', 'AuthController.handleCallback').as('social.login.callback');
